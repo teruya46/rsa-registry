@@ -332,6 +332,73 @@ body {
   margin-left: 12px;
 }
 
+/* ───── Install ───── */
+.install-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.install-section:has(.is-visible) {
+  margin-top: 32px;
+}
+
+.install-button {
+  display: none;
+  padding: 13px 30px;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.install-button.is-visible {
+  display: inline-block;
+}
+
+.install-button:active {
+  transform: scale(0.98);
+  background: var(--ink-soft);
+}
+
+@media (hover: hover) {
+  .install-button:hover {
+    background: var(--ink-soft);
+  }
+}
+
+.install-hint {
+  display: none;
+  font-family: var(--serif);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 320px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  margin: 0;
+}
+
+.install-hint.is-visible {
+  display: block;
+}
+
+.install-hint strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
 /* ───── Footer ───── */
 .footer {
   margin-top: auto;
@@ -377,6 +444,7 @@ body {
 .cards-secondary .card:nth-child(1) { animation: fadeUp 0.5s ease-out 0.34s both; }
 .section-label:nth-of-type(3) { animation: fadeUp 0.5s ease-out 0.40s both; }
 .resources { animation: fadeUp 0.5s ease-out 0.46s both; }
+.install-section:has(.is-visible) { animation: fadeUp 0.5s ease-out 0.50s both; }
 .footer { animation: fadeUp 0.5s ease-out 0.55s both; }
 
 /* ───── Responsive tweaks ───── */
@@ -460,6 +528,18 @@ body {
     </a>
   </nav>
 
+  <!-- Install -->
+  <div class="install-section">
+    <button class="install-button" id="installButton" type="button">
+      ホーム画面に追加
+    </button>
+    <p class="install-hint" id="installHint">
+      iPhone の Safari または Chrome で開いた状態で、画面下部の<br>
+      <strong>共有ボタン → 「ホーム画面に追加」</strong><br>
+      でアプリとして追加できます。
+    </p>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-divider"></div>
@@ -470,12 +550,41 @@ body {
 </div>
 
 <script>
-document.querySelectorAll('[data-placeholder="true"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('リンク未設定です。\nHTMLの該当 <a> タグの href にPDFのGoogle DriveリンクをペーストしてGitHubに再アップロードしてください。');
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
   });
+}
+
+const installButton = document.getElementById('installButton');
+const installHint = document.getElementById('installHint');
+let deferredPrompt = null;
+
+const isStandalone =
+  window.matchMedia('(display-mode: standalone)').matches ||
+  window.navigator.standalone === true;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone) installButton.classList.add('is-visible');
 });
+
+installButton.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if (outcome === 'accepted') installButton.classList.remove('is-visible');
+  deferredPrompt = null;
+});
+
+window.addEventListener('appinstalled', () => {
+  installButton.classList.remove('is-visible');
+  deferredPrompt = null;
+});
+
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+if (isIOS && !isStandalone) installHint.classList.add('is-visible');
 </script>
 
 </body>

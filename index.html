@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="RSA Registry">
-<meta name="theme-color" content="#F5F1E8">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="format-detection" content="telephone=no">
 
 <title>RSA Registry</title>
@@ -19,25 +19,12 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
-
 <style>
 :root {
-  --bg: #F5F1E8;
-  --bg-card: #FBF8F1;
-  --bg-card-hover: #EFE9DA;
-  --ink: #1C1B17;
-  --ink-soft: #4A4538;
-  --ink-muted: #8A7E66;
-  --line: #D4CBB8;
-  --line-soft: #E5DDC9;
-  --accent: #8B2E1F;
-
-  --serif: 'Noto Serif JP', 'Cormorant Garamond', serif;
-  --sans: 'Noto Sans JP', -apple-system, sans-serif;
-  --display: 'Cormorant Garamond', 'Noto Serif JP', serif;
+  --bg: #FFFFFF;
+  --heavy: #0A2C5C;
+  --accent: #00B4D8;
+  --sans: -apple-system, "Helvetica Neue", "Yu Gothic", sans-serif;
 }
 
 * {
@@ -49,7 +36,7 @@
 
 html, body {
   background: var(--bg);
-  color: var(--ink);
+  color: var(--heavy);
   font-family: var(--sans);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -61,10 +48,6 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background-image:
-    radial-gradient(circle at 0% 0%, rgba(139, 46, 31, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(139, 46, 31, 0.03) 0%, transparent 50%);
-  background-attachment: fixed;
 }
 
 .app {
@@ -79,9 +62,8 @@ body {
 
 /* ───── Header ───── */
 .header {
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 22px;
-  margin-bottom: 28px;
+  padding-bottom: 20px;
+  margin-bottom: 8px;
   animation: fadeUp 0.6s ease-out 0.05s both;
 }
 
@@ -89,175 +71,140 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .eyebrow {
-  font-family: var(--display);
   font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
 }
 
 .eyebrow-meta {
-  font-family: var(--display);
   font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--ink-muted);
-  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--heavy);
+  opacity: 0.55;
 }
 
 .title-jp {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: 26px;
-  letter-spacing: 0.02em;
-  line-height: 1.3;
-  color: var(--ink);
-  margin-bottom: 6px;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--heavy);
+  margin-bottom: 10px;
 }
 
 .title-en {
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--ink-soft);
+  color: var(--heavy);
+  opacity: 0.65;
 }
 
 /* ───── Section labels ───── */
 .section-label {
-  font-family: var(--display);
-  font-size: 10px;
-  letter-spacing: 0.32em;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--ink-muted);
-  font-weight: 500;
-  margin: 22px 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-label::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--line-soft);
-}
-
-.section-label:first-of-type {
-  margin-top: 0;
+  letter-spacing: 0.06em;
+  color: var(--heavy);
+  margin-top: 32px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--heavy);
 }
 
 /* ───── Cards ───── */
 .cards {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .card {
-  display: block;
-  background: var(--bg-card);
-  border: 1px solid var(--line-soft);
-  border-radius: 6px;
-  padding: 22px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0;
+  background: var(--bg);
+  border-radius: 0;
+  border-bottom: 0.5px solid var(--heavy);
   text-decoration: none;
-  color: inherit;
-  position: relative;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  color: var(--heavy);
   cursor: pointer;
   -webkit-touch-callout: none;
   user-select: none;
+  transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
 .card:active {
-  background: var(--bg-card-hover);
-  transform: scale(0.985);
+  opacity: 0.7;
+  transform: scale(0.99);
 }
 
 @media (hover: hover) {
   .card:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--line);
+    opacity: 0.75;
   }
 }
 
 .card-primary {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
+  background: var(--heavy);
+  color: #FFFFFF;
+  padding: 22px 22px;
+  border-bottom: 4px solid var(--accent);
+  font-weight: 700;
+}
+
+.card-primary:active {
+  opacity: 0.88;
 }
 
 @media (hover: hover) {
   .card-primary:hover {
-    background: #2A2823;
-    border-color: #2A2823;
+    opacity: 0.9;
   }
-}
-
-.card-primary:active {
-  background: #2A2823;
-}
-
-.card-row {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.card-num {
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 22px;
-  color: var(--ink-muted);
-  line-height: 1;
-  min-width: 28px;
-}
-
-.card-primary .card-num {
-  color: rgba(245, 241, 232, 0.6);
 }
 
 .card-body {
   flex: 1;
+  min-width: 0;
 }
 
 .card-title {
-  font-family: var(--serif);
-  font-weight: 500;
   font-size: 19px;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
   color: inherit;
-  line-height: 1.3;
+}
+
+.card-primary .card-title {
+  font-size: 22px;
+  font-weight: 800;
 }
 
 .card-note {
-  font-family: var(--sans);
   font-size: 11px;
   font-weight: 400;
-  color: var(--ink-muted);
+  color: var(--heavy);
+  opacity: 0.7;
   line-height: 1.5;
-  margin-top: 6px;
-  letter-spacing: 0.02em;
+  margin-top: 4px;
+  letter-spacing: 0.01em;
 }
 
 .card-arrow {
-  font-family: var(--display);
-  font-size: 20px;
-  font-style: italic;
-  color: var(--ink-muted);
+  font-size: 22px;
+  font-weight: 700;
+  color: inherit;
+  flex-shrink: 0;
+  line-height: 1;
   transition: transform 0.2s ease;
-  font-weight: 300;
-}
-
-.card-primary .card-arrow {
-  color: rgba(245, 241, 232, 0.6);
 }
 
 .card:active .card-arrow {
@@ -268,31 +215,28 @@ body {
 .resources {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  background: var(--line-soft);
-  border: 1px solid var(--line-soft);
-  border-radius: 6px;
-  overflow: hidden;
 }
 
 .res-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
-  background: var(--bg-card);
+  gap: 12px;
+  padding: 16px 0;
+  background: var(--bg);
+  border-bottom: 0.5px solid var(--heavy);
   text-decoration: none;
-  color: inherit;
-  transition: background 0.2s ease;
+  color: var(--heavy);
+  transition: opacity 0.2s ease;
 }
 
 .res-link:active {
-  background: var(--bg-card-hover);
+  opacity: 0.7;
 }
 
 @media (hover: hover) {
   .res-link:hover {
-    background: var(--bg-card-hover);
+    opacity: 0.75;
   }
 }
 
@@ -305,31 +249,27 @@ body {
 }
 
 .res-num {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 13px;
-  color: var(--ink-muted);
-  font-weight: 300;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
   flex-shrink: 0;
 }
 
 .res-name {
-  font-family: var(--serif);
-  font-weight: 400;
   font-size: 14px;
-  color: var(--ink);
+  font-weight: 600;
+  color: var(--heavy);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .res-arrow {
-  font-family: var(--display);
-  font-style: italic;
-  color: var(--ink-muted);
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--heavy);
   flex-shrink: 0;
-  margin-left: 12px;
 }
 
 /* ───── Install ───── */
@@ -347,17 +287,17 @@ body {
 
 .install-button {
   display: none;
-  padding: 13px 30px;
-  background: var(--ink);
-  color: var(--bg);
+  padding: 14px 32px;
+  background: var(--heavy);
+  color: #FFFFFF;
   border: none;
-  border-radius: 6px;
-  font-family: var(--serif);
+  border-radius: 0;
+  font-family: inherit;
   font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: opacity 0.2s ease, transform 0.1s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -366,27 +306,27 @@ body {
 }
 
 .install-button:active {
+  opacity: 0.85;
   transform: scale(0.98);
-  background: var(--ink-soft);
 }
 
 @media (hover: hover) {
   .install-button:hover {
-    background: var(--ink-soft);
+    opacity: 0.85;
   }
 }
 
 .install-hint {
   display: none;
-  font-family: var(--serif);
   font-size: 12px;
   line-height: 1.7;
-  color: var(--ink-soft);
-  max-width: 320px;
+  color: var(--heavy);
+  opacity: 0.85;
+  max-width: 340px;
   padding: 14px 18px;
-  background: var(--bg-card);
-  border: 1px solid var(--line-soft);
-  border-radius: 6px;
+  background: var(--bg);
+  border-top: 0.5px solid var(--heavy);
+  border-bottom: 0.5px solid var(--heavy);
   margin: 0;
 }
 
@@ -395,41 +335,91 @@ body {
 }
 
 .install-hint strong {
-  font-weight: 500;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--heavy);
+  opacity: 1;
 }
+
+/* ───── Theme picker ───── */
+.theme-picker {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--heavy);
+}
+
+.theme-swatches {
+  display: flex;
+  gap: 12px;
+}
+
+.theme-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  background:
+    linear-gradient(to bottom, var(--swatch-heavy) 50%, var(--swatch-accent) 50%);
+  background-clip: padding-box;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-swatch:active {
+  transform: scale(0.92);
+}
+
+.theme-swatch.is-selected {
+  border-color: var(--heavy);
+}
+
+.theme-swatch[data-theme="1"] { --swatch-heavy: #000000; --swatch-accent: #E63946; }
+.theme-swatch[data-theme="2"] { --swatch-heavy: #0E2A4A; --swatch-accent: #1ABC9C; }
+.theme-swatch[data-theme="3"] { --swatch-heavy: #0A2C5C; --swatch-accent: #00B4D8; }
+.theme-swatch[data-theme="4"] { --swatch-heavy: #1A3D2A; --swatch-accent: #88B043; }
+.theme-swatch[data-theme="5"] { --swatch-heavy: #2A2A2A; --swatch-accent: #C8941F; }
 
 /* ───── Footer ───── */
 .footer {
   margin-top: auto;
-  padding-top: 32px;
+  padding-top: 36px;
   text-align: center;
 }
 
 .footer-divider {
-  width: 40px;
-  height: 1px;
-  background: var(--line);
-  margin: 0 auto 16px;
+  width: 60px;
+  height: 2px;
+  background: var(--heavy);
+  margin: 0 auto 14px;
 }
 
 .footer-text {
-  font-family: var(--display);
-  font-style: italic;
   font-size: 11px;
-  color: var(--ink-muted);
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--heavy);
+  letter-spacing: 0.04em;
   line-height: 1.6;
 }
 
 .footer-id {
-  font-family: var(--display);
   font-size: 9px;
+  font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: var(--heavy);
+  opacity: 0.6;
   margin-top: 6px;
-  opacity: 0.7;
 }
 
 /* ───── Animations ───── */
@@ -438,6 +428,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.section-label:nth-of-type(1) { animation: fadeUp 0.5s ease-out 0.10s both; }
 .cards .card:nth-child(1) { animation: fadeUp 0.5s ease-out 0.15s both; }
 .cards .card:nth-child(2) { animation: fadeUp 0.5s ease-out 0.22s both; }
 .section-label:nth-of-type(2) { animation: fadeUp 0.5s ease-out 0.28s both; }
@@ -445,16 +436,35 @@ body {
 .section-label:nth-of-type(3) { animation: fadeUp 0.5s ease-out 0.40s both; }
 .resources { animation: fadeUp 0.5s ease-out 0.46s both; }
 .install-section:has(.is-visible) { animation: fadeUp 0.5s ease-out 0.50s both; }
-.footer { animation: fadeUp 0.5s ease-out 0.55s both; }
+.theme-picker { animation: fadeUp 0.5s ease-out 0.54s both; }
+.footer { animation: fadeUp 0.5s ease-out 0.58s both; }
 
-/* ───── Responsive tweaks ───── */
+/* ───── Responsive ───── */
 @media (max-width: 380px) {
   .app { padding: 22px 18px 32px; }
-  .title-jp { font-size: 23px; }
-  .card { padding: 20px 18px; }
-  .card-title { font-size: 18px; }
+  .title-jp { font-size: 25px; }
+  .card-title { font-size: 17px; }
+  .card-primary .card-title { font-size: 20px; }
+  .card-primary { padding: 20px 18px; }
 }
 </style>
+
+<script>
+(function () {
+  const themes = {
+    1: { heavy: "#000000", accent: "#E63946" },
+    2: { heavy: "#0E2A4A", accent: "#1ABC9C" },
+    3: { heavy: "#0A2C5C", accent: "#00B4D8" },
+    4: { heavy: "#1A3D2A", accent: "#88B043" },
+    5: { heavy: "#2A2A2A", accent: "#C8941F" }
+  };
+  const m = document.cookie.match(/(?:^|;\s*)rsaTheme=(\d)/);
+  const n = m ? Number(m[1]) : 3;
+  const t = themes[n] || themes[3];
+  document.documentElement.style.setProperty('--heavy', t.heavy);
+  document.documentElement.style.setProperty('--accent', t.accent);
+})();
+</script>
 </head>
 <body>
 
@@ -471,52 +481,43 @@ body {
   </header>
 
   <!-- Data Entry -->
-  <div class="section-label"><span>Data Entry</span></div>
+  <div class="section-label">Data Entry</div>
 
   <div class="cards">
 
     <a class="card card-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfO1umoWlcYnOVoWuafRX4pggQL-qUKlLGA6eg8wYyhO1fwGg/viewform?usp=header" target="_blank" rel="noopener">
-      <div class="card-row">
-        <div class="card-num">01</div>
-        <div class="card-body">
-          <div class="card-title">術中入力</div>
-        </div>
-        <div class="card-arrow">&rarr;</div>
+      <div class="card-body">
+        <div class="card-title">術中入力</div>
       </div>
+      <div class="card-arrow">&rarr;</div>
     </a>
 
     <a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSct57t2BGrFPmSyckrTKSGCx5m1aZRJOphM7jDaa7vtMS-G3Q/viewform?usp=header" target="_blank" rel="noopener">
-      <div class="card-row">
-        <div class="card-num">02</div>
-        <div class="card-body">
-          <div class="card-title">術前後入力</div>
-          <div class="card-note">写真をアップロードしていただければ院生が入力代行します</div>
-        </div>
-        <div class="card-arrow">&rarr;</div>
+      <div class="card-body">
+        <div class="card-title">術前後入力</div>
+        <div class="card-note">写真をアップロードしていただければ院生が入力代行します</div>
       </div>
+      <div class="card-arrow">&rarr;</div>
     </a>
 
   </div>
 
   <!-- Registry -->
-  <div class="section-label"><span>Registry</span></div>
+  <div class="section-label">Registry</div>
 
   <div class="cards cards-secondary">
 
     <a class="card" href="https://docs.google.com/spreadsheets/d/1ZnZ0rLdmNYO3WQcHaTZxsIMDnpn7fOJod2-RluVM8wc/edit?usp=drivesdk" target="_blank" rel="noopener">
-      <div class="card-row">
-        <div class="card-num">03</div>
-        <div class="card-body">
-          <div class="card-title">結果一覧</div>
-        </div>
-        <div class="card-arrow">&rarr;</div>
+      <div class="card-body">
+        <div class="card-title">結果一覧</div>
       </div>
+      <div class="card-arrow">&rarr;</div>
     </a>
 
   </div>
 
   <!-- Resources -->
-  <div class="section-label"><span>Resources</span></div>
+  <div class="section-label">Resources</div>
 
   <nav class="resources">
     <a class="res-link" href="https://drive.google.com/file/d/1VqmsIPKo-7hBinGHXeCAOGA0fkAx43_s/view?usp=drive_link" target="_blank" rel="noopener">
@@ -540,6 +541,18 @@ body {
     </p>
   </div>
 
+  <!-- Theme picker -->
+  <div class="theme-picker">
+    <span class="theme-label">Theme</span>
+    <div class="theme-swatches">
+      <button class="theme-swatch" data-theme="1" type="button" aria-label="Crimson"></button>
+      <button class="theme-swatch" data-theme="2" type="button" aria-label="Navy"></button>
+      <button class="theme-swatch" data-theme="3" type="button" aria-label="Marine"></button>
+      <button class="theme-swatch" data-theme="4" type="button" aria-label="Forest"></button>
+      <button class="theme-swatch" data-theme="5" type="button" aria-label="Charcoal"></button>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-divider"></div>
@@ -550,6 +563,38 @@ body {
 </div>
 
 <script>
+const themes = {
+  1: { name: "Crimson",  heavy: "#000000", accent: "#E63946" },
+  2: { name: "Navy",     heavy: "#0E2A4A", accent: "#1ABC9C" },
+  3: { name: "Marine",   heavy: "#0A2C5C", accent: "#00B4D8" },
+  4: { name: "Forest",   heavy: "#1A3D2A", accent: "#88B043" },
+  5: { name: "Charcoal", heavy: "#2A2A2A", accent: "#C8941F" }
+};
+
+function setTheme(n) {
+  const t = themes[n];
+  if (!t) return;
+  document.documentElement.style.setProperty('--heavy', t.heavy);
+  document.documentElement.style.setProperty('--accent', t.accent);
+  document.cookie = 'rsaTheme=' + n + '; max-age=2592000; path=/';
+  document.querySelectorAll('.theme-swatch').forEach((el) => {
+    el.classList.toggle('is-selected', Number(el.dataset.theme) === n);
+  });
+}
+
+function loadTheme() {
+  const m = document.cookie.match(/(?:^|;\s*)rsaTheme=(\d)/);
+  const n = m ? Number(m[1]) : 3;
+  setTheme(n);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadTheme();
+  document.querySelectorAll('.theme-swatch').forEach((el) => {
+    el.addEventListener('click', () => setTheme(Number(el.dataset.theme)));
+  });
+});
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').catch(() => {});
